@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="assets_common" name="scaf base report assets" inherit_id="report.">
+
+            <xpath expr="." position="inside">
+
+                <link href="/scaf_base/static/src/css/report.css" rel="stylesheet"/>
+
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

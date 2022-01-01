@@ -1,0 +1,34 @@
+body {
+    font-size: 0.9em;
+}
+
+.table-products {
+    width: 100%;
+}
+
+.table-products > thead {
+    color: white;
+    background-color: #ef9632;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table-products > tbody {
+    text-align: center;
+}
+
+.table-products, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 30px;
+}
+
+.table-aditional-data {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-aditional-data > td {
+    text-align: left;
+}

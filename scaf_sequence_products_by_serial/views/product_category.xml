@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product_category_form_view</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='parent_id']" position="after">
+              <field name="default_code"/>
+              <field name="ir_sequence_id"/>
+            </xpath>
+
+        </field>
+    </record>
+
+  </data>
+</odoo>

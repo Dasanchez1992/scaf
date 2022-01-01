@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.scaf</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="15"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Scaf Config" string="SCAF"
+                         data-key="scaf">
+                        <h2>Informes</h2>
+                        <div class="row mt16 o_settings_container" name="scaf_reports">
+                            <div class="col-12 col-lg-6 o_setting_box" id="scaf_reports_div">
+                                <label for="admin_area_partner_id"/>
+                                <field name="admin_area_partner_id"/>
+                                <div class="text-muted">
+                                    Jefe de área que aparece en los informes para su firma.
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Logo reportes</span>
+                                    <span class="fa fa-lg fa-file-pdf-o" title="Values set here are company-specific."
+                                          aria-label="Values set here are company-specific."
+                                          role="img"/>
+                                    <div class="text-muted">
+                                        Logo que se utilizara en los informes de SCAF
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16 row">
+                                            <field name="image_logo_reports" widget="image" class="ml-4 oe_avatar"
+                                                   required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_scaf_general_config" model="ir.actions.act_window">
+            <field name="name">Scaf Config</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module': 'scaf_base'}</field>
+        </record>
+
+    </data>
+</odoo>

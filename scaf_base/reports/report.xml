@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="report_stock_picking_transfer_certificate" model="ir.actions.report">
+            <field name="name">Acta de transferencia de activos</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">scaf_base.report_transfer_certificate</field>
+            <field name="report_file">scaf_base.report_transfer_certificate</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_transfer_certificate">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="picking">
+                    <t t-set="company" t-value="picking.user_id.company_id"/>
+                    <t t-call="web.basic_layout">
+                        <div class="header">
+                            <link rel='stylesheet' href='/scaf_base/static/src/css/report.css'/>
+                            <table>
+                                <tr>
+                                    <td class="center-element" rowspan="4" style="width: 20%">
+                                         <img t-if="company.image_logo_reports"
+                                              t-att-src="image_data_uri(company.image_logo_reports)"
+                                              style="height: 110px;" alt="Logo"/>
+                                    </td>
+                                    <td class="header_title1 center-element" rowspan="2" style="width: 30%">Acta entrega recepción de equipos</td>
+                                    <td class="header_title2" style="width: 25%">Código:</td>
+                                    <td class="center-element">GTI-CAI-FM003</td>
+                                </tr>
+                                <tr>
+                                    <td class="header_title2">Fecha de emisión:</td>
+                                    <td class="center-element">01/08/2019</td>
+                                </tr>
+                                <tr>
+                                    <td class="header_title1 center-element" rowspan="2">
+                                        Gestión de Tecnologías de la Información y Comunicación</td>
+                                    <td class="header_title2">Versión:</td>
+                                    <td class="center-element">2.0</td>
+                                </tr>
+                                <tr>
+                                    <td class="header_title2">Página:</td>
+                                    <td class="center-element">1 de 1</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="page">
+                            <link rel='stylesheet' href='/scaf_base/static/src/css/report_table_products.css'/>
+                            <div style="width: 100%;text-align: center;">
+                                <b>Acta N°.</b> <t t-esc="picking.name"></t>
+                            </div>
+                            <div style="width: 100%;text-align: right; margin-top: 25px">
+                                <b>Ciudad:</b> Machala <b style="margin-left: 50px;">Fecha: </b>
+                                <span t-esc="picking.date_done.strftime('%d/%m/%Y')"/>
+                            </div>
+                            <div style="width: 100%;text-align: justify; margin-top: 25px">
+                                <p>
+                                    El área de Tecnologías de la Información y Comunicación realiza la entrega del equipo propiedad de FARMAMIA
+                                    CIA LTDA a Sr./Srta./Sra. <b><t t-esc="picking.partner_dest_id.name.upper()"></t></b> con número de identificación <b><t t-esc="picking.partner_dest_id.vat"></t></b> en la
+                                    sucursal/área <b><t t-esc="picking.location_dest_id.location_id.complete_name.upper()"/></b>, que ha sido asignado como custodio del equipo que a continuación se
+                                    describe:
+                                </p>
+                            </div>
+                            <div style="width: 100%;text-align: justify; margin-top: 25px;min-height: 350px;">
+                                <table class="table-products">
+                                    <thead>
+                                        <th>Cantidad</th>
+                                        <th>Descripción</th>
+                                        <th>Cod. Identificación</th>
+                                        <th>Marca</th>
+                                        <th>Modelo</th>
+                                        <th>Serie</th>
+                                        <th>Estado</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="picking.move_line_ids_without_package" t-as="line" class="pb-2">
+                                            <td><t t-esc="int(line.qty_done)"/></td>
+                                            <td><t t-esc="line.product_id.name"/></td>
+                                            <td><t t-esc="line.lot_id.ref"/></td>
+                                            <td><t t-esc="line.product_id.brand_id.name"/></td>
+                                            <td><t t-esc="line.product_id.name"/></td>
+                                            <td><t t-esc="line.lot_id.name"/></td>
+                                            <td>NUEVO</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: 100%; margin-top: 25px">
+                                <table class="table-aditional-data">
+                                    <tr>
+                                        <td style="width: 33%">
+                                            <div style="margin-left: 10px;">
+                                                <b>Motivo:</b> <t t-esc="picking.picking_transfer_reason_id.name.upper()"/>
+                                            </div>
+                                        </td>
+                                        <td style="width: 33%">
+                                            <div style="margin-left: 10px;">
+                                                <b>Traslado:</b>
+                                            </div>
+                                        </td>
+                                        <td style="width: 33%">
+                                            <div style="margin-left: 10px;">
+                                                <b>Area:</b> <t t-esc="picking.location_dest_id.location_id.complete_name.upper()"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="width: 100%;text-align: left; margin-top: 25px">
+                                <b>Observación:</b>
+                            </div>
+                            <div style="width: 100%;text-align: justify; margin-top: 15px">
+                                <p>
+                                    Para constancia de que se reciben los equipos antes mencionados a entera satisfacción firman las partes.
+                                </p>
+                            </div>
+                            <div style="margin-top: 10px">
+                                <div class="float-left" style="text-align:left">
+                                    <b>Entregué conforme:</b>
+                                    <div style="border-top:1px solid;margin-top: 50px; width: 300px">
+                                        <t t-esc="picking.user_id.partner_id.name"/>
+                                    </div>
+                                    <div><b>CI:</b> <t t-esc="picking.user_id.partner_id.vat"/></div>
+                                    <div><b>Cargo:</b> <t t-esc="picking.user_id.partner_id.function"/></div>
+                                </div>
+                                <div class="float-right" style="text-align:left">
+                                    <b>Recibí conforme:</b>
+                                    <div style="border-top:1px solid;margin-top: 50px; width: 300px">
+                                        <t t-esc="picking.partner_dest_id.name"/>
+                                    </div>
+                                    <div><b>CI:</b> <t t-esc="picking.partner_dest_id.vat"/></div>
+                                    <div><b>Cargo:</b> <t t-esc="picking.partner_dest_id.function"/></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 180px">
+                                <center>
+                                        <b>Verificado por:</b>
+                                        <div style="border-top:1px solid;margin-top: 50px;width: 300px">
+                                            <t t-esc="company.admin_area_partner_id.name"/>
+                                        </div>
+                                        <div><b>CI:</b> <t t-esc="company.admin_area_partner_id.vat"/></div>
+                                        <div><b>Cargo:</b> <t t-esc="company.admin_area_partner_id.function"/></div>
+                                </center>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
