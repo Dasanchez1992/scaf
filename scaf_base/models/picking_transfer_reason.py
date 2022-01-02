@@ -1,6 +1,28 @@
 from odoo import fields, models, api
 
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    tracking = fields.Selection(default='serial')
+
+
+class ProductLabelLayout(models.TransientModel):
+    _inherit = 'product.label.layout'
+
+    print_format = fields.Selection([
+        ('dymo', 'SCAF'),
+    ], ondelete={'dymo': 'set default'}, default='dymo')
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    def get_ref_by_barcode_and_product(self, barcode):
+        self.ensure_one()
+        return self.env['stock.production.lot'].search([('product_id', '=', self.id), ('name', '=', barcode)])
+
+
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 

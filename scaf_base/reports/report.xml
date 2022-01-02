@@ -42,7 +42,7 @@
                                 </tr>
                                 <tr>
                                     <td class="header_title2">Página:</td>
-                                    <td class="center-element">1 de 1</td>
+                                    <td class="center-element"><span class="page"/> de <span class="topage"/></td>
                                 </tr>
                             </table>
                         </div>
