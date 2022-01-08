@@ -17,7 +17,7 @@ class StockProductionLot(models.Model):
         #                         categ_id.name,
         #                         obj.product_id.name
         #                     ))
-        if categ_id:
+        if categ_id.ir_sequence_id:
             obj.ref = "{}-{}".format(
                 categ_id.default_code,
                 categ_id.ir_sequence_id._next()
