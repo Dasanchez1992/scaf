@@ -30,7 +30,12 @@ class StockPicking(models.Model):
         comodel_name='picking.transfer.reason',
         string='Motivo transferencia',
         required=False)
-
+    picking_type_transfer = fields.Selection(
+        string='Tipo de traslado',
+        selection=[('Temporal', 'Temporal'),
+                   ('Definitivo', 'Definitivo'), ],
+        default='Definitivo')
+        
 
 class PickingTransferReason(models.Model):
     _name = 'picking.transfer.reason'

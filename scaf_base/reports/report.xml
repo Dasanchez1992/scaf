@@ -82,7 +82,7 @@
                                             <td><t t-esc="line.product_id.brand_id.name"/></td>
                                             <td><t t-esc="line.product_id.name"/></td>
                                             <td><t t-esc="line.lot_id.name"/></td>
-                                            <td>NUEVO</td>
+                                            <td><t t-esc="line.lot_id.state_id.name"/></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -97,7 +97,7 @@
                                         </td>
                                         <td style="width: 33%">
                                             <div style="margin-left: 10px;">
-                                                <b>Traslado:</b>
+                                                <b>Traslado:</b> <t t-esc="picking.picking_type_transfer.upper()"/>
                                             </div>
                                         </td>
                                         <td style="width: 33%">
