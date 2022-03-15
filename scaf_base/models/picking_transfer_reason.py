@@ -7,12 +7,16 @@ class ProductTemplate(models.Model):
     tracking = fields.Selection(default='serial')
 
 
-class ProductLabelLayout(models.TransientModel):
-    _inherit = 'product.label.layout'
-
-    print_format = fields.Selection([
-        ('dymo', 'SCAF'),
-    ], ondelete={'dymo': 'set default'}, default='dymo')
+# class ProductLabelLayout(models.TransientModel):
+#     _inherit = 'product.label.layout'
+#
+#     print_format = fields.Selection([
+#         ('dymo', 'SCAF'),
+#         ('2x7xprice', '2 x 7 with price'),
+#         ('4x7xprice', '4 x 7 with price'),
+#         ('4x12', '4 x 12'),
+#         ('4x12xprice', '4 x 12 with price')
+#     ], ondelete={'dymo': 'set default'}, default='dymo')
 
 
 class ProductProduct(models.Model):
