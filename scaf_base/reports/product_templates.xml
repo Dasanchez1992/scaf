@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="stock.label_product_product_view">
+            <t t-foreach="quantity.items()" t-as="barcode_and_qty_by_product">
+                <t t-set="product" t-value="barcode_and_qty_by_product[0]"/>
+                <t t-foreach="barcode_and_qty_by_product[1]" t-as="barcode_and_qty">
+                    <t t-set="barcode" t-value="barcode_and_qty[0]"/>
+                    <t t-foreach="range(barcode_and_qty[1])" t-as="qty">
+                        <t t-translation="off">
+                            ^XA
+                            ^FO130, 30^A0N, 20, 15^FD FARMAMIA CIA LTDA^FS
+                            ^FT60,70^ADN,18,10^FD<t t-esc="product.display_name"/> <t t-esc="product.get_ref_by_barcode_and_product(barcode).ref"/>^FS
+                            <t t-if="barcode">
+                                ^FO60,80^BY2
+                                ^BCN,60,,,,A
+                                ^FD<t t-esc="barcode"/>^FS
+                            </t>
+                            ^XZ
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

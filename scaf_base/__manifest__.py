@@ -28,6 +28,7 @@
         'views/stock_picking.xml',
         'views/stock_product_lot.xml',
         'reports/report.xml',
-        'reports/report_simple_label_dymo.xml'
+        'reports/report_simple_label_dymo.xml',
+        'reports/product_templates.xml'
     ],
 }
