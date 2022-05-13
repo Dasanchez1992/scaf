@@ -25,5 +25,20 @@
             </t>
         </template>
 
+        <template id="stock.label_lot_template_view">
+            <t t-foreach="docs" t-as="lot">
+                <t t-translation="off">
+                    ^XA
+                    ^FO120, 15^A0N, 20, 22^FD FARMAMIA CIA LTDA^FS
+                    ^FT50,55^ADN,18,10^FD<t t-esc="lot.product_id.display_name"/>^FS
+                    ^FT50,80^ADN,18,10^FD<t t-esc="lot.ref"/>^FS
+                    ^FO50,90^BY2
+                    ^BCN,60,,,,A
+                    ^FD<t t-esc="lot.name"/>^FS
+                    ^XZ
+                </t>
+            </t>
+        </template>
+
     </data>
 </odoo>
