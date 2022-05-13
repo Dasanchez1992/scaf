@@ -10,7 +10,7 @@
                     <t t-foreach="range(barcode_and_qty[1])" t-as="qty">
                         <t t-translation="off">
                             ^XA
-                            ^FO120, 15^A0N, 20, 22^FD FARMAMIA CIA LTDA^FS
+                            ^FO100, 15^A0N, 20, 22^FD FARMAMIA CIA LTDA^FS
                             ^FT50,55^ADN,18,10^FD<t t-esc="product.display_name"/>^FS
                             ^FT50,80^ADN,18,10^FD<t t-esc="product.get_ref_by_barcode_and_product(barcode).ref"/>^FS
                             <t t-if="barcode">
@@ -29,7 +29,7 @@
             <t t-foreach="docs" t-as="lot">
                 <t t-translation="off">
                     ^XA
-                    ^FO120, 15^A0N, 20, 22^FD FARMAMIA CIA LTDA^FS
+                    ^FO100, 15^A0N, 20, 22^FD FARMAMIA CIA LTDA^FS
                     ^FT50,55^ADN,18,10^FD<t t-esc="lot.product_id.display_name"/>^FS
                     ^FT50,80^ADN,18,10^FD<t t-esc="lot.ref"/>^FS
                     ^FO50,90^BY2
