@@ -40,5 +40,30 @@
             </t>
         </template>
 
+        <template id="scaf_base.stock_quant_zpl">
+            <t t-foreach="docs" t-as="quant">
+                <t t-translation="off">
+                    ^XA
+                    ^FO100, 15^A0N, 20, 22^FD FARMAMIA CIA LTDA^FS
+                    ^FT50,55^ADN,18,10^FD<t t-esc="quant.product_id.display_name"/>^FS
+                    ^FT50,80^ADN,18,10^FD<t t-esc="quant.lot_id.ref"/>^FS
+                    ^FO50,90^BY2
+                    ^BCN,60,,,,A
+                    ^FD<t t-esc="quant.lot_id.name"/>^FS
+                    ^XZ
+                </t>
+            </t>
+        </template>
+
+        <record id="label_lot_template" model="ir.actions.report">
+            <field name="name">Etiquetas (ZPL)</field>
+            <field name="model">stock.quant</field>
+            <field name="report_type">qweb-text</field>
+            <field name="report_name">scaf_base.stock_quant_zpl</field>
+            <field name="report_file">scaf_base.stock_quant_zpl</field>
+            <field name="binding_model_id" ref="stock.model_stock_quant"/>
+            <field name="binding_type">report</field>
+        </record>
+
     </data>
 </odoo>
